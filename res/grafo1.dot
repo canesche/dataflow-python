@@ -1,0 +1,6 @@
+strict digraph "grafo" {
+    a -> b
+    b -> c
+    c -> d
+    a -> d
+}
