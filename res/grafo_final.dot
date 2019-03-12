@@ -1,0 +1,26 @@
+strict digraph "grafo" {
+i0;
+add0;
+mult0;
+i1;
+i2;
+sub0;
+i3;
+add1;
+sub1;
+i4;
+o0;
+o1;
+i0 -> add0;
+add0 -> mult0;
+add0 -> add1;
+mult0 -> add1;
+mult0 -> sub1;
+i1 -> add0;
+i2 -> sub0;
+sub0 -> mult0;
+i3 -> sub0;
+add1 -> o0;
+sub1 -> o1;
+i4 -> sub1;
+}

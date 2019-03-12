@@ -1,12 +1,14 @@
 import networkx as nx
 
-# supoe grafo conectado
+# considered graph connected
 numberOfFU = 16
 
+def searchWidth():
+    pass
+
 if __name__ == "__main__":
-    G = nx.DiGraph(
-        nx.drawing.nx_pydot.read_dot(
-            "/Users/vanessa/PycharmProjects/ModuloScheduling/res/h2v2_smooth_downsample_dfg__6.dot"))
+    
+    G = nx.DiGraph(nx.drawing.nx_pydot.read_dot("res/grafo.dot"))
 
     numberOfNodes = len(G.nodes())
     number = round((numberOfNodes / numberOfFU))
@@ -20,11 +22,14 @@ if __name__ == "__main__":
     i = 0
     novos_nos = []
     for n in G.nodes():
-        if len(G.predecessors(n)) > 2:
+        #print(n)
+          
+        if len(list(G.predecessors(n))) > 2:
             list_pre = G.predecessors(n)
             x = str(n)
             for e in list_pre:
                 G.remove_edge(e, n)
+            
             while len(list_pre) != 2:
                 nodo = x[:4] + "N" + str(int(x[-2:]) + i)
                 list_pre.append(nodo)
@@ -37,8 +42,10 @@ if __name__ == "__main__":
                 i = i + 1
             G.add_edge(list_pre[0], n)
             G.add_edge(list_pre[1], n)
+        
 
     for n in novos_nos:
+        print(G.predecessors(n))
         if len(G.predecessors(n)) > 2:
             list_pre = G.predecessors(n)
             x = str(n)
@@ -78,15 +85,15 @@ if __name__ == "__main__":
             dict[s] = dict[s] - 1
             if dict[s] == 0:
                 listNodes.append(s)
-    print("Busca em Largura:")
-    print(listClosed)
+    
+    print("Busca em Largura:", listClosed)
 
     config = []
     time = []
 
-    nx.drawing.nx_pydot.write_dot(G, "/Users/vanessa/PycharmProjects/ModuloScheduling/res/grafo_final.dot")
+    nx.drawing.nx_pydot.write_dot(G, "res/grafo_final.dot")
 
     for n in G.nodes():
-        if len(G.predecessors(n)) > 2:
+        if len(list(G.predecessors(n))) > 2:
             print("Something is WRONG")
             print(n)
