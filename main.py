@@ -4,7 +4,7 @@ from graphviz import Source
 # function main
 if __name__ == "__main__" :
 
-    path_origin = "res/grafo1.dot"
+    path_origin = "res/grafo.dot"
     path_destiny = "res/grafo_final.dot"
 
     # read a graph
@@ -69,6 +69,9 @@ if __name__ == "__main__" :
 
     nx.drawing.nx_pydot.write_dot(new_graph, path_destiny)
 
-    s = Source.from_file(path_destiny)
-    #s = Source.from_file(path_origin)
-    s.view()
+    
+    s1 = Source.from_file(path_origin)
+    s2 = Source.from_file(path_destiny)
+    s1.view()
+    s2.view()
+
